@@ -39,17 +39,37 @@ qoq_change <- function(data, period_lag) {
 }
 
 
-# ---- dv ----
+# ---- original dv ----
 
-dv <- read_csv("raw/target_variable.csv")
+dv_qtr <- read_csv("raw/target_variable.csv")
 colnames(dv) <- dv[1,]
-dv <- dv[-c(1:2),]
+dv_qtr <- dv[-c(1:2),]
 
-dv <- dv %>%
+dv_qtr <- dv %>%
   mutate(year = as.numeric(Year),
          quarter = as.numeric(gsub("Q", "", Quarter)),
          dv = as.numeric(gsub("%", "", `Annualized EBITDA Per Share Growth minus 10-Year`))/100) %>%
   select(year, quarter, dv)
+
+
+dv_mth <- read_csv("raw/2021_6_24_new_target_variable_sp500.csv")
+colnames(dv) <- dv[1,]
+dv_mth <- dv[-1,]
+
+treasury_mth <- read_csv("raw/treasury_10yr.csv") %>%
+  mutate(date = ymd(DATE),
+         treasury = as.numeric(GS10)/100) %>% 
+  select(-DATE, -GS10)
+
+dv_mth <- dv_mth %>% 
+  select(date = Date, PE_ratio = `S&P 500 PE Ratio`, price = `S&P 500 Price`,
+         eps = `Calculated EPS (LTM)`, eps_growth = `EPS (LTM) Growth`) %>%
+  mutate(date = dmy(date),
+         esp_growth_annual = gsub("%", "", eps_growth),
+         esp_growth_annual = (as.numeric(esp_growth_annual)/100 + 1)^12 - 1) %>%
+  left_join(treasury, by = "date") %>%
+  mutate(target_variable = esp_growth_annual - treasury) %>%
+  filter(date < ymd("2022/1/1"))
 
 # ---- business confidence ----
 bus_conf <- read_csv("raw/business_conf_idx.csv") %>%
