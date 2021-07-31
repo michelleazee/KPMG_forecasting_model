@@ -10,11 +10,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-df_joined = pd.read_csv('data/preprocessed/fed_data.csv')
+df = pd.read_csv('data/preprocessed/fed_data.csv')
+df = df.set_index(pd.to_datetime(df['date'], format="%Y-%m-%d")).drop(columns=['date'])
+
+df_joined = df.dropna(subset = ['RateDecision', 'next_decision', 'next_next_decision'])
 
 # model features
-feature_columns = ['RateDecision', 
-                  'GDP_diff_prev', 'GDP_diff_year', 'GDPPOT_diff_prev', 'GDPPOT_diff_year',
+feature_columns = ['GDP_diff_prev', 'GDP_diff_year', 'GDPPOT_diff_prev', 'GDPPOT_diff_year',
                   'PCE_diff_prev', 'PCE_diff_year', 'CPI_diff_prev', 'CPI_diff_year', 
                   'Unemp_value', 'Unemp_diff_prev', 'Unemp_diff_year',
                   'Employ_value', 'Employ_diff_prev', 'Employ_diff_year',
@@ -32,7 +34,6 @@ feature_list = list(X.columns)
 X = np.array(X)
 y = np.array(df_joined['next_decision'])
 
-#Split(80% training, 20% test)
 import random 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report, f1_score, plot_confusion_matrix
@@ -45,51 +46,85 @@ from matplotlib import pyplot
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import RepeatedStratifiedKFold
 
-
-# label encode the target variable
-y = LabelEncoder().fit_transform(y)
-# summarize distribution
-counter = Counter(y)
-for k,v in counter.items():
-	per = v / len(y) * 100
-	print('Class=%d, n=%d (%.3f%%)' % (k, v, per))
-# plot the distribution
-pyplot.bar(counter.keys(), counter.values())
-pyplot.show()
-
-
-# SMOTE
-# transform the dataset
-from imblearn.over_sampling import SMOTE
-
-oversample = SMOTE()
-X, y = oversample.fit_resample(X, y)
-# summarize distribution
-counter = Counter(y)
-for k,v in counter.items():
-	per = v / len(y) * 100
-	print('Class=%d, n=%d (%.3f%%)' % (k, v, per))
-# plot the distribution
-pyplot.bar(counter.keys(), counter.values())
-pyplot.show()
-
-x_train, x_test, y_train, y_test = train_test_split(X, y, test_size= 0.2, random_state = random.randint(0,1000), shuffle=False)
-
 # Set Random Seed
 random.seed(42)
 np.random.seed(42)
 rand_seed = 42
 
+x_train, x_test, y_train, y_test = train_test_split(X, y, test_size= 0.2, random_state = random.randint(0,1000), shuffle = False)
+
+
+
+# label encode the target variable
+# y_train = LabelEncoder().fit_transform(y_train)
+# summarize distribution
+counter = Counter(y_train)
+for k,v in counter.items():
+	per = v / len(y_train) * 100
+	print('Class=%d, n=%d (%.3f%%)' % (k, v, per))
+# plot the distribution
+pyplot.bar(counter.keys(), counter.values())
+pyplot.show()
+
+
+# from Syndey's link: https://machinelearningmastery.com/multi-class-imbalanced-classification/
+# SMOTE
+# transform the dataset
+from imblearn.over_sampling import SMOTE
+
+oversample = SMOTE()
+x_train, y_train = oversample.fit_resample(x_train, y_train)
+# summarize distribution
+counter = Counter(y_train)
+for k,v in counter.items():
+	per = v / len(y_train) * 100
+	print('Class=%d, n=%d (%.3f%%)' % (k, v, per))
+# plot the distribution
+pyplot.bar(counter.keys(), counter.values())
+pyplot.show()
+
+
 clf = RandomForestClassifier(n_estimators=1000, class_weight='balanced')
 rf_model = clf.fit(x_train, y_train)
 rf_predictions = rf_model.predict(x_test)
 
-# accuracy
-scores = rf_model.score(x_test, y_test)
-print(scores)
 
-# roc --- not working 
-roc_auc_score(y_test, clf.predict_proba(x_test), multi_class='ovr')
+
+
+
+
+### Confusion Matrix ###
+class_names = ['Lower', 'Hold', 'Raise']
+fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 10))
+fig.suptitle("Confusion Matrix", fontsize=20)
+
+plot_confusion_matrix(rf_model, x_train, y_train, display_labels=class_names, 
+                      cmap=plt.cm.Blues, normalize=None, ax=ax1)
+ax1.set_title("Train Data: Actual Count")
+ax1.grid(False)
+
+plot_confusion_matrix(rf_model, x_train, y_train, display_labels=class_names, 
+                      cmap=plt.cm.Blues, normalize='all', ax=ax2)
+ax2.set_title=("Train Data: Normalized")
+ax2.grid(False)
+
+plot_confusion_matrix(rf_model, x_test, y_test, display_labels=class_names, 
+                      cmap=plt.cm.Blues, normalize=None, ax=ax3)
+ax3.set_title=("Test Data: Actual Count")
+ax3.grid(False)
+
+plot_confusion_matrix(rf_model, x_test, y_test, display_labels=class_names, 
+                      cmap=plt.cm.Blues, normalize='all', ax=ax4)
+ax4.set_title("Test Data: Normalized")
+ax4.grid(False)
+
+plt.tight_layout(pad=3.0)
+plt.show()
+    
+
+
+
+
 
 
 
@@ -101,37 +136,6 @@ feature_importances = [(feature, round(importance, 2)) for feature, importance i
 feature_importances = sorted(feature_importances, key = lambda x: x[1], reverse = True)
 # Print out the feature and importances 
 [print('Variable: {:20} Importance: {}'.format(*pair)) for pair in feature_importances];
-
-
-
-
-
-
-
-
-
-# from Syndey's link: https://machinelearningmastery.com/multi-class-imbalanced-classification/
-# evaluate a model
-from numpy import mean
-from numpy import std
-
-def evaluate_model(X, y, model):
-	# define evaluation procedure
-	cv = RepeatedStratifiedKFold(n_splits=5, n_repeats=3, random_state=1)
-	# evaluate model
-	scores = cross_val_score(model, X, y, scoring='accuracy', cv=cv, n_jobs=-1)
-	return scores
-
-y = LabelEncoder().fit_transform(y)
-
-model = RandomForestClassifier(n_estimators=1000, class_weight='balanced')
-# evaluate the model
-scores = evaluate_model(X, y, model)
-# summarize performance
-print('Mean Accuracy: %.3f (%.3f)' % (mean(scores), std(scores)))
-
-
-
 
 
 
@@ -335,7 +339,6 @@ def train_grid_search(estimator, param_grid, scoring, refit, cv=5, verbose=1, pl
 
 
 
-
 # Random Forest
 rf_clf = RandomForestClassifier()
 
@@ -368,19 +371,55 @@ param_grid = {'n_estimators': np.linspace(1, 100, 50, dtype=int),
 ext_model = train_grid_search(rf_clf, param_grid, scoring, refit, cv=kfold, verbose=1, plot=True)
 ext_best = ext_model.best_estimator_
 
+rf_model = RandomForestClassifier(bootstrap = False, criterion = 'gini', 
+                                  max_depth = None, max_features = 8, min_samples_leaf = 10, 
+                                  min_samples_split = 5, n_estimators = 500)
+
+
+rf_model = rf_model.fit(x_train, y_train)
+rf_predictions = rf_model.predict(x_test)
+
+# accuracy
+scores = rf_model.score(x_test, y_test)
+print(scores)
+
+# roc 
+roc_auc_score(y_test, rf_model.predict_proba(x_test), multi_class='ovr')
+
+
+
+
+### Confusion Matrix ###
+class_names = ['Lower', 'Hold', 'Raise']
+fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 10))
+fig.suptitle("Confusion Matrix", fontsize=20)
+
+plot_confusion_matrix(rf_model, x_train, y_train, display_labels=class_names, 
+                      cmap=plt.cm.Blues, normalize=None, ax=ax1)
+ax1.set_title("Train Data: Actual Count")
+ax1.grid(False)
+
+plot_confusion_matrix(rf_model, x_train, y_train, display_labels=class_names, 
+                      cmap=plt.cm.Blues, normalize='all', ax=ax2)
+ax2.set_title=("Train Data: Normalized")
+ax2.grid(False)
+
+plot_confusion_matrix(rf_model, x_test, y_test, display_labels=class_names, 
+                      cmap=plt.cm.Blues, normalize=None, ax=ax3)
+ax3.set_title=("Test Data: Actual Count")
+ax3.grid(False)
+
+plot_confusion_matrix(rf_model, x_test, y_test, display_labels=class_names, 
+                      cmap=plt.cm.Blues, normalize='all', ax=ax4)
+ax4.set_title("Test Data: Normalized")
+ax4.grid(False)
+
+plt.tight_layout(pad=3.0)
+plt.show()
 
 
 
 
 
-# Perform Grid Search
-param_grid = {'n_estimators': np.linspace(1, 500, 50, dtype=int),
-              'min_samples_split': [2],
-              'min_samples_leaf': [3],
-              'max_features': [8],
-              'max_depth': [None],
-              'criterion': ['gini'],
-              'bootstrap': [False]}
 
-rf_model = train_grid_search(rf_clf, param_grid, scoring, refit, cv=kfold, verbose=1, plot=True)
-rf_best = rf_model.best_estimator_
+
