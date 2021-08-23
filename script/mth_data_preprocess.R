@@ -121,6 +121,17 @@ inv <- sp500bs[8,] %>%
          date = ymd(date)) %>%
   select(date, inv)
 
+# fed funds rate ----
+
+fed_funds <- read_csv("raw/mth_fed_funds.csv")  %>%
+  mutate(fed_funds = pct_change(FEDFUNDS, 1),
+         fed_funds_cat = ifelse(fed_funds < 0, 1,
+                                ifelse(fed_funds == 0, 2,
+                                       ifelse(fed_funds > 0, 3, NA)))) %>%
+  select(date = DATE, fed_funds, fed_funds_cat)
+
+
+
 # join
 
 df <- dv_mth %>%
@@ -128,9 +139,11 @@ df <- dv_mth %>%
   left_join(bus_conf, by = "date") %>%
   left_join(cpi, by = "date") %>%
   left_join(vix, by = "date") %>%
-  left_join(inv, by = "date")
+  left_join(inv, by = "date") %>%
+  left_join(fed_funds, by = "date")
 
 write_csv(df, "final/mth_data_michelle.csv")
+
 
 
 df_new <- df %>% 
@@ -143,7 +156,7 @@ df_new <- df %>%
 cor(df_new$stock_idx_dv, df_new$ebitda_dv)
 
 df_new <- df %>% 
-  filter(!is.na(ebitda_dv)) %>%
+#  filter(!is.na(ebitda_dv)) %>%
   mutate(stock_idx_dv = ifelse(stock_idx_dv > 2, 2, stock_idx_dv))
 
 cor(df_new$stock_idx_dv, df_new$ebitda_dv)
@@ -156,3 +169,13 @@ ggplot(df_new, aes(stock_idx_dv, ebitda_dv, color = date)) +
        y = "Original EBITDA Target") +
   theme_minimal()
 
+ggplot() +
+  geom_line(df_new, aes(date, stock_idx_dv, color = "Stock Index DV")) +
+  geom_line(df_new, aes(date, ebitda_dv, color = "Balance Sheet DV")) +
+  labs(title = "Original Target vs Stock Index Target",
+       x = "Years",
+       y = "Target Variable") +
+  scale_color_manual(name = "DV Calculation", values = c("blue", "red", "yellow")) +
+  theme_minimal()
+
+range(df$date)
