@@ -29,7 +29,7 @@ Team member contact information can also be found on the slides.
 
 #### 01. Data Cleaning
 
-#### 02. Recession Prediction Model
+#### 02. Recession Prediction
 
 #### 03. Fed Funds Rate Prediction
 
