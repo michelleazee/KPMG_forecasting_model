@@ -41,17 +41,19 @@ Team member contact information can also be found on the slides.
 
 #### 07. Consumer Discretionary Sector Model
 ##### Input: 
-* ../data/raw/consumer_discretionary_target.csv
+* ../data/raw/con_disc_pe_ratio.csv
+* ../data/raw/con_disc_price.csv
 * employment, unemployment...... data from Quandl
 ##### Output:
 * ../data/model_outputs/consumer_discretionary_forecast.csv
 ##### Process:
-1. Load data from csv and Quandl
-2. Shift data for 1, 3, 6, 12, 18 month time horizons
-3. Find highest correlation features
-4. Find order/ seasonal order for SARIMAX Model
-5. Choose features/ run models for each time horizon
-6. Stitch model predictions to single 18-month forecast
+1. Create target variable from price, P/E ratio, and Treasury Rate
+2. Load data from csv and Quandl
+3. Shift data for 1, 3, 6, 12, 18 month time horizons
+4. Find highest correlation features
+5. Find order/ seasonal order for SARIMAX Model
+6. Choose features/ run models for each time horizon
+7. Stitch model predictions to single 18-month forecast
 
 #### 08. Financials Sector Model
 
