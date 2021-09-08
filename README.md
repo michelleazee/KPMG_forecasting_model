@@ -37,7 +37,7 @@ Team member contact information can also be found on the slides.
 
 For the short term, we're using a **Facebook Prophet Model**. After trying a few methods to improve the model, the final model is an **additive model with both endogenous trend decomposition and exogenous regressors**. 
 
-**We've adopted a Rolling Window Cross Validation approach**, where we'll be predicting from the cutoff point to cutoff+horiaon. The time before cutoff point, length of which is the intial/lookback period, is the training set. The training set and prediction results rolls along the entire dataframe.
+**We've adopted a Rolling Window Cross Validation approach**, where we'll be predicting from the cutoff point to cutoff+horizon. The time before cutoff point, length of which is the intial/lookback period, is the training set. The training set and prediction results rolls along the entire dataframe.
 
 ##### Input data:
 * data_short_term.csv (In which target variable is from the client and other data are previous processed data) **We used Recursive Feature Elimination(RFE) to identify the most important features from all the data we have which could be found in the data folder of this repository**
@@ -110,6 +110,23 @@ In terms of the model:
 9. Stitch model predictions to single 18-month forecast
 
 #### 10. Telecommunications Sector Model
+
+##### Input data (data source is Quandl unless otherwise stated): 
+* PE_daily_normalized_tele.csv (download from ciq)
+* daily_price_tele.csv (download from ciq)
+* one_month_prediction.csv (prediction from short-term model)
+* twelve_month_prediction.csv (prediction from short-term model)
+* eighteen_month_prediction.csv (prediction from short-term model)
+* exogenous variable data from quandl 
+
+##### Process:
+1. Create target variable from Price, P/E ratio, and Treasury Rate using Quandl
+2. Load independent variables from Quandl and transform them into the wanted format
+3. Load csv file of market level prediction results
+4. Perform feature correlation analysis and select the independent variables of the model
+5. Shift data for 1, 3, 6, 12, 18 month time horizons
+6. Find order/ seasonal order for SARIMAX model of each horizon
+7. Run models for each time horizon
 
 #### 11. Healthcare Sector Model
 
