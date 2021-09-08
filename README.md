@@ -35,8 +35,12 @@ Team member contact information can also be found on the slides.
 
 #### 04. Short Term Overall Model
 
+For the short term, we're using a **Facebook Prophet Model**. After trying a few methods to improve the model, the final model is an **additive model with both endogenous trend decomposition and exogenous regressors**. 
+
+**We've adopted a Rolling Window Cross Validation approach**, where we'll be predicting from the cutoff point to cutoff+horiaon. The time before cutoff point, length of which is the intial/lookback period, is the training set. The training set and prediction results rolls along the entire dataframe.
+
 ##### Input data:
-* data_short_term.csv (In which target variable is from the client and other data are previous processed data which could be found in the data folder of this repository)
+* data_short_term.csv (In which target variable is from the client and other data are previous processed data) **We used Recursive Feature Elimination(RFE) to identify the most important features from all the data we have which could be found in the data folder of this repository**
 * COVID_Boolean.csv (We identify that Covid starts from March, 2020, therefore starting from March of 2020 the variable value equals 1, whereas previous values equal to 0.)
 * preprocessed_recession_probability.csv (Preprocessed based on recession prediction results from **02. Recession Prediction**)
 * preprocessed_Fed_minutes.csv (Preprocessed based on Fed minutes prediction results from **03. Fed Funds Rate Prediction**)
@@ -44,7 +48,14 @@ Team member contact information can also be found on the slides.
 ##### Output data:
 * Prediction results of 1-12 month horizon from the Facebook Prophet Model (Path: KPMG_forecasting_model/script/Final Short-term Model/**X**_month_prediction.csv)
 
-##### Process:
+##### Process (short-term_model_with_new_variables.ipynb)
+1. Load target variable and economic indicator independent variables (whose data processing procedure and data source could be found in the data and script folder)
+2. Load data for recession probability prediction, fed funds rate prediction and the Covid Boolean
+3. Use the **generate_model_result** function, which is the concentrate of our intermediate results and thoughts of model improvement; **The parameters are tuned such that seasonality is set as 'multiplicative', initial as 6 years, horizon as 1-12 months, and cutoff half of the horizons respectively)**
+4. Apply the function with different horizons (1-12 month) and write csv files for each
+5. As these files include duplicate rows, use the **updatedf** function to eliminate duplicate rows
+6. Apply the function and the output would be the prediction results wanted
+7. Plot the predictions and residules
 
 #### 05. Long Term Overall Model
 
