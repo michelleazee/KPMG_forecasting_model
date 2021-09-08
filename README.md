@@ -35,6 +35,17 @@ Team member contact information can also be found on the slides.
 
 #### 04. Short Term Overall Model
 
+##### Input data:
+* data_short_term.csv (In which target variable is from the client and other data are from previous processed data which could be found in the data folder of this repository)
+* COVID_Boolean.csv (Self created)
+* preprocessed_recession_probability.csv (Preprocessed based on recession prediction results from **02. Recession Prediction**)
+* preprocessed_Fed_minutes.csv (Preprocessed based on Fed minutes prediction results from **03. Fed Funds Rate Prediction**)
+
+##### Output data:
+* Prediction results of 1-12 month horizon from the Facebook Prophet Model (Path: KPMG_forecasting_model/script/Final Short-term Model/**X**_month_prediction.csv)
+
+##### Process:
+
 #### 05. Long Term Overall Model
 
 #### 06. Overall Model Results Ensemble
