@@ -59,6 +59,34 @@ Team member contact information can also be found on the slides.
 
 #### 09. Information Technology Sector Model
 
+The IT industry includes three major industry groups:
+
+1. Software and services
+2. Technology hardware and equipment
+3. Semiconductor and semiconductor equipment
+
+In terms of the model:
+
+##### Input data (data source is Quandl unless otherwise stated): 
+* Target variable calculated from Price, P/E ratio, and Treasury Rate
+* Private fixed investment: Nonresidential: Intellectual property products: Software
+* Value of Manufacturers' Shipments for Information Technology Industries
+* Value of Manufacturers' New Orders for Information Technology Industries
+* Value of Manufacturers' Total Inventories for Information Technology Industries
+* Compensation of employees: Domestic private industries: Information
+* Unemployment Rate: Information Industry, Private Wage and Salary Workers
+* **Prediction results from overall market models (For 1, 3, 6, 12, 18 months)**
+
+##### Process:
+1. Create target variable from Price, P/E ratio, and Treasury Rate using Quandl
+2. Load independent variables from Quandl and transform them into the wanted format (ex. Transform private fixed investment on intellectual property products from quarterly to monthly)
+4. Load csv file of market level prediction results
+5. Perform feature correlation analysis and select the independent variables of the model
+6. Shift data for 1, 3, 6, 12, 18 month time horizons
+7. Find order/ seasonal order for SARIMAX model of each horizon
+8. Run models for each time horizon
+9. Stitch model predictions to single 18-month forecast
+
 #### 10. Telecommunications Sector Model
 
 #### 11. Healthcare Sector Model
