@@ -36,8 +36,8 @@ Team member contact information can also be found on the slides.
 #### 04. Short Term Overall Model
 
 ##### Input data:
-* data_short_term.csv (In which target variable is from the client and other data are from previous processed data which could be found in the data folder of this repository)
-* COVID_Boolean.csv (Self created)
+* data_short_term.csv (In which target variable is from the client and other data are previous processed data which could be found in the data folder of this repository)
+* COVID_Boolean.csv (We identify that Covid starts from March, 2020, therefore starting from March of 2020 the variable value equals 1, whereas previous values equal to 0.)
 * preprocessed_recession_probability.csv (Preprocessed based on recession prediction results from **02. Recession Prediction**)
 * preprocessed_Fed_minutes.csv (Preprocessed based on Fed minutes prediction results from **03. Fed Funds Rate Prediction**)
 
