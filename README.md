@@ -58,8 +58,19 @@ For the short term, we're using a **Facebook Prophet Model**. After trying a few
 7. Plot the predictions and residules
 
 #### 05. Long Term Overall Model
+#### Input: 
+* ../data/raw/con_disc_pe_ratio.csv
+* ../data/raw/con_disc_price.csv
+* ../data/final/mth_data_michelle.csv
+##### Output:
+* ../script/Long-term model/Results_for_sector/
 
 #### 06. Overall Model Results Ensemble
+#### Input: 
+* ../script/Final Short-term Model/Results/
+* ../script/Long-term model/Results_for_sector/
+##### Output:
+* ../script/Overall model Ensemble/Results/
 
 #### 07. Consumer Discretionary Sector Model
 ##### Input: 
