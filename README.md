@@ -27,9 +27,9 @@ Team member contact information can also be found on the slides.
 
 ## Code Description
 
-### 01. Data Cleaning
+## 01. Data Cleaning
 
-#### 02. Recession Prediction
+## 02. Recession Prediction
 The recession prediction model helps capture turning points in the business cycles and send near-term recession siganls; therefore, the results of the recession model is incorporated as an engineered feature into the overall market short-term model to improve overall model accuracy. Specifically, this recession model takes the difference between 10-year and 3-month Treasury rates (also defined as the “yield spread”), as well as other economic indicators to calculate recession probability in 12-month ahead horizon.
 
 #### Input data: The independent variables including adjusted yield spread and several economic indicators are used to predict 12-month ahead NBER recession dates. 
@@ -66,7 +66,7 @@ The recession prediction model helps capture turning points in the business cycl
    
 
 
-#### 03. Fed Funds Rate Prediction
+## 03. Fed Funds Rate Prediction
 
 #### 04. Short Term Overall Model
 
