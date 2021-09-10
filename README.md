@@ -163,6 +163,4 @@ The Healthcare Sector includes 4 sub-industries:
 2. Load csv file of independent variables and target variable
 3. Conduct correlation analysis and draw correlation matrix map
 4. Run univariate sarima for short-term (1-9 months) forecasting
-5. Run ensemble model incorporating sarima and random forest regression for long-term forecasting
-  5.1 shifting data for 12, 15, 18 month time horizons and running models for each time horizon
-  5.2 adjusting weights assigned to sarima and random forest regression to reach the best scenario
+5. Run ensemble model incorporating sarima and random forest regression for long-term forecasting: 1) shifting data for 12, 15, 18 month time horizons and running models for each time horizon; 2) adjusting weights assigned to sarima and random forest regression to reach the best scenario
