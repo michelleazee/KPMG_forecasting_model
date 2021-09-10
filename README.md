@@ -37,9 +37,10 @@ The recession prediction model helps capture turning points in the business cycl
 <ins>Independent Variables</ins>  
 
 * Term Spread/inversion of the yield curve =  10-Year Treasury Constant Maturity Rate - 3-month treasury bill - secondary market rate (Quandl)
-* Adjusted Term Spread - equation reference: https://research.rabobank.com/publicationservice/download/publication/token/8Wsu7NXGcHfF4ZkWAkjg
+* Adjusted Term Spread - equation reference: [Robobank Reference](https://research.rabobank.com/publicationservice/download/publication/token/8Wsu7NXGcHfF4ZkWAkjg)
 * Unemployment Rate (Quandl) 
 * Fed Funds Rate (Quandl) 
+* CPI (Quandl)
 
 <ins>Dependent Variables</ins> : NBER recession dates (Quandl): 
 * NBERt,t+12, equals one if there is an NBER recession starting at any time in the 12 months that follow the observed independent variables, and zero otherwise. 
@@ -47,6 +48,15 @@ The recession prediction model helps capture turning points in the business cycl
 #### Output data:
 
 #### Process:
+* Load both independent and dependent variable data from quandl (note: quandl API key needed) 
+* Fill recession dates: replace NA values by zeros & visualize recession data 
+* Transform raw data: 
+   * Unemployment Rate: log differential
+   * CPI: log differential
+   * Fed Funds Rate: differential
+   * Adjusted Term Spread using equation from Robobank
+* 
+   
 
 
 
