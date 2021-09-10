@@ -152,7 +152,7 @@ The Healthcare Sector includes 4 sub-industries:
 * % aging population - World Bank
 * US national health expenditure as % of GDP - Bureau of Labor Statistics
 * % of medical policyholders - US Census Bureau
-* # of medical SaaS start-ups - Crunchbase
+* number of medical SaaS startups - Crunchbase
 * research & development expenditure - Congressional Budget Office
 * all variables organized into one file: /data/raw/hc_data.csv
 ##### Output:
