@@ -34,14 +34,15 @@ The recession prediction model helps capture turning points in the business cycl
 
 ##### Input data: The independent variables including adjusted term spread and several economic indicators are used to predict 12-month ahead NBER recession dates. 
 
-### Independent Variables: 
+##### Independent Variables: 
 
 * Term Spread/inversion of the yield curve =  10-Year Treasury Constant Maturity Rate - 3-month treasury bill - secondary market rate (Quandl)
 * Adjusted Term Spread - equation reference: https://research.rabobank.com/publicationservice/download/publication/token/8Wsu7NXGcHfF4ZkWAkjg
 * Unemployment Rate (Quandl) 
 * Fed Funds Rate (Quandl) 
 
-### Dependent Variable: NBER recession dates (Quandl): NBERt,t+12, equals one if there is an NBER recession starting at any time in the 12 months that follow the observed independent variables, and zero otherwise. 
+##### Dependent Variable: NBER recession dates (Quandl): 
+* NBERt,t+12, equals one if there is an NBER recession starting at any time in the 12 months that follow the observed independent variables, and zero otherwise. 
 
 
 #### 03. Fed Funds Rate Prediction
