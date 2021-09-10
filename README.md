@@ -32,7 +32,7 @@ Team member contact information can also be found on the slides.
 #### 02. Recession Prediction
 The recession prediction model helps capture turning points in the business cycles and send near-term recession siganls; therefore, the results of the recession model is incorporated as an engineered feature into the overall market short-term model to improve overall model accuracy. Specifically, this recession model takes the difference between 10-year and 3-month Treasury rates (also defined as the “term spread”), as well as other economic indicators to calculate recession probability in 12-month ahead horizon.
 
-##### Input data: The independent variables including adjusted term spread and several economic indicators are used to predict 12-month ahead NBER recession dates. 
+#### Input data: The independent variables including adjusted term spread and several economic indicators are used to predict 12-month ahead NBER recession dates. 
 
 <ins>Independent Variables</ins>  
 
@@ -41,8 +41,13 @@ The recession prediction model helps capture turning points in the business cycl
 * Unemployment Rate (Quandl) 
 * Fed Funds Rate (Quandl) 
 
-##### Dependent Variable: NBER recession dates (Quandl): 
+<ins>Dependent Variables</ins> : NBER recession dates (Quandl): 
 * NBERt,t+12, equals one if there is an NBER recession starting at any time in the 12 months that follow the observed independent variables, and zero otherwise. 
+
+#### Output data:
+
+#### Process:
+
 
 
 #### 03. Fed Funds Rate Prediction
