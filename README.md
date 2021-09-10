@@ -30,13 +30,13 @@ Team member contact information can also be found on the slides.
 #### 01. Data Cleaning
 
 #### 02. Recession Prediction
-The recession prediction model helps capture turning points in the business cycles and send near-term recession siganls; therefore, the results of the recession model is incorporated as an engineered feature into the overall market short-term model to improve overall model accuracy. Specifically, this recession model takes the difference between 10-year and 3-month Treasury rates (also defined as the “term spread”), as well as other economic indicators to calculate recession probability in 12-month ahead horizon.
+The recession prediction model helps capture turning points in the business cycles and send near-term recession siganls; therefore, the results of the recession model is incorporated as an engineered feature into the overall market short-term model to improve overall model accuracy. Specifically, this recession model takes the difference between 10-year and 3-month Treasury rates (also defined as the “yield spread”), as well as other economic indicators to calculate recession probability in 12-month ahead horizon.
 
-#### Input data: The independent variables including adjusted term spread and several economic indicators are used to predict 12-month ahead NBER recession dates. 
+#### Input data: The independent variables including adjusted yield spread and several economic indicators are used to predict 12-month ahead NBER recession dates. 
 
 <ins>Independent Variables</ins>  
 
-* Term Spread/inversion of the yield curve =  10-Year Treasury Constant Maturity Rate - 3-month treasury bill - secondary market rate (Quandl)
+* Yiekd Spread/Inversion of the Yield Curve =  10-Year Treasury Constant Maturity Rate - 3-month treasury bill - secondary market rate (Quandl)
 * Adjusted Term Spread - equation reference: [Robobank Reference](https://research.rabobank.com/publicationservice/download/publication/token/8Wsu7NXGcHfF4ZkWAkjg)
 * Unemployment Rate (Quandl) 
 * Fed Funds Rate (Quandl) 
