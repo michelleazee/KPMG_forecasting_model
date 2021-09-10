@@ -94,8 +94,8 @@ For the short term, we're using a **Facebook Prophet Model**. After trying a few
 
 ## 05. Long Term Overall Model
 #### Input: 
-* ../data/raw/2021_6_24_new_target_variable_sp500.csv
 * ../data/final/mth_data_michelle.csv
+* Note: target variable (../data/raw/2021_6_24_new_target_variable_sp500.csv, ../data/raw/mth_treasury_10yr.csv) and economic indicator variables (../data/raw/) are incoporatd into the input data file.
 ##### Output:
 * ../script/Long-term model/Results_for_sector/
 
