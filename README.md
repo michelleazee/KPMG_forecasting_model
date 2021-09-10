@@ -34,7 +34,7 @@ The recession prediction model helps capture turning points in the business cycl
 
 ##### Input data: The independent variables including adjusted term spread and several economic indicators are used to predict 12-month ahead NBER recession dates. 
 
-##### Independent Variables: 
+<ins>Independent Variables</ins>  
 
 * Term Spread/inversion of the yield curve =  10-Year Treasury Constant Maturity Rate - 3-month treasury bill - secondary market rate (Quandl)
 * Adjusted Term Spread - equation reference: https://research.rabobank.com/publicationservice/download/publication/token/8Wsu7NXGcHfF4ZkWAkjg
