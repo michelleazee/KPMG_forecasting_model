@@ -94,8 +94,7 @@ For the short term, we're using a **Facebook Prophet Model**. After trying a few
 
 ## 05. Long Term Overall Model
 #### Input: 
-* ../data/raw/con_disc_pe_ratio.csv
-* ../data/raw/con_disc_price.csv
+* ../data/raw/2021_6_24_new_target_variable_sp500.csv
 * ../data/final/mth_data_michelle.csv
 ##### Output:
 * ../script/Long-term model/Results_for_sector/
