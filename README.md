@@ -42,7 +42,7 @@ The recession prediction model helps capture turning points in the business cycl
 * Fed Funds Rate (Quandl) 
 * CPI (Quandl)
 
-<ins>Dependent Variables</ins> : NBER recession dates (Quandl): 
+<ins>Dependent Variables (DV) </ins> : NBER recession dates (Quandl): 
 * NBERt,t+12, equals one if there is an NBER recession starting at any time in the 12 months that follow the observed independent variables, and zero otherwise. 
 
 #### Output data:
@@ -55,9 +55,14 @@ The recession prediction model helps capture turning points in the business cycl
    * CPI: log differential
    * Fed Funds Rate: differential
    * Adjusted Term Spread using equation from Robobank
-* 
+* Manipulate recession dates (DV) to prepare for 12-month prediction horizon
+* Select three machine learning models: Guassian, SVM, Random Forest Classifier
+   * Set training set ["1962-01-31":"2006-01-31"] and testing set ["2006-01-31" and onwards]
+   * Calculate model accuracy: AUC score, True & False Positive rates 
+   * Choice the best performing model (SVM) based on model performance metrics
+* Predict recession probability using *model.predict_proba*
+* Visualize model performance
    
-
 
 
 #### 03. Fed Funds Rate Prediction
