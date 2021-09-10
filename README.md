@@ -36,8 +36,8 @@ The recession prediction model helps capture turning points in the business cycl
 
 <ins>Independent Variables</ins>  
 
-* Yiekd Spread/Inversion of the Yield Curve =  10-Year Treasury Constant Maturity Rate - 3-month treasury bill - secondary market rate (Quandl)
-* Adjusted Term Spread - equation reference: [Robobank Reference](https://research.rabobank.com/publicationservice/download/publication/token/8Wsu7NXGcHfF4ZkWAkjg)
+* Yield Spread/Inversion of the Yield Curve =  10-Year Treasury Constant Maturity Rate - 3-month treasury bill - secondary market rate (Quandl)
+* Adjusted Yield Spread - equation reference: [Robobank Reference](https://research.rabobank.com/publicationservice/download/publication/token/8Wsu7NXGcHfF4ZkWAkjg)
 * Unemployment Rate (Quandl) 
 * Fed Funds Rate (Quandl) 
 * CPI (Quandl)
@@ -48,20 +48,21 @@ The recession prediction model helps capture turning points in the business cycl
 #### Output data:
 
 #### Process:
-* Load both independent and dependent variable data from quandl (note: quandl API key needed) 
-* Fill recession dates: replace NA values by zeros & visualize recession data 
-* Transform raw data: 
+
+1. Load both independent and dependent variable data from quandl (note: quandl API key needed) 
+2. Fill recession dates: replace NA values by zeros & visualize recession data 
+3. Transform raw data: 
    * Unemployment Rate: log differential
    * CPI: log differential
    * Fed Funds Rate: differential
    * Adjusted Term Spread using equation from Robobank
-* Manipulate recession dates (DV) to prepare for 12-month prediction horizon
-* Select three machine learning models: Guassian, SVM, Random Forest Classifier
+4. Manipulate recession dates (DV) to prepare for 12-month prediction horizon
+5. Select three machine learning models: Guassian, SVM, Random Forest Classifier
    * Set training set ["1962-01-31":"2006-01-31"] and testing set ["2006-01-31" and onwards]
    * Calculate model accuracy: AUC score, True & False Positive rates 
    * Choice the best performing model (SVM) based on model performance metrics
-* Predict recession probability using *model.predict_proba*
-* Visualize model performance
+6. Predict recession probability using *model.predict_proba*
+7. Visualize model performance
    
 
 
@@ -123,6 +124,20 @@ For the short term, we're using a **Facebook Prophet Model**. After trying a few
 7. Stitch model predictions to single 18-month forecast
 
 #### 08. Financials Sector Model
+
+##### Input: 
+
+
+
+
+##### Process:
+1. Create target variable from price, P/E ratio, and Treasury Rate
+2. Load data from Quandl
+3. Shift independent variable data for 1, 3, 6, 12, 18 month time horizons
+4. Find highest correlation features
+5. Find order/ seasonal order for SARIMAX Model
+6. Choose features/ run models for each time horizon
+7. Stitch model predictions to single 18-month forecast
 
 #### 09. Information Technology Sector Model
 
