@@ -68,7 +68,7 @@ The recession prediction model helps capture turning points in the business cycl
 
 ## 03. Fed Funds Rate Prediction
 
-#### 04. Short Term Overall Model
+## 04. Short Term Overall Model
 
 For the short term, we're using a **Facebook Prophet Model**. After trying a few methods to improve the model, the final model is an **additive model with both endogenous trend decomposition and exogenous regressors**. 
 
@@ -92,7 +92,7 @@ For the short term, we're using a **Facebook Prophet Model**. After trying a few
 6. Apply the function and the output would be the prediction results wanted
 7. Plot the predictions and residules
 
-#### 05. Long Term Overall Model
+## 05. Long Term Overall Model
 #### Input: 
 * ../data/raw/con_disc_pe_ratio.csv
 * ../data/raw/con_disc_price.csv
@@ -100,14 +100,14 @@ For the short term, we're using a **Facebook Prophet Model**. After trying a few
 ##### Output:
 * ../script/Long-term model/Results_for_sector/
 
-#### 06. Overall Model Results Ensemble
+## 06. Overall Model Results Ensemble
 #### Input: 
 * ../script/Final Short-term Model/Results/
 * ../script/Long-term model/Results_for_sector/
 ##### Output:
 * ../script/Overall model Ensemble/Results/
 
-#### 07. Consumer Discretionary Sector Model
+## 07. Consumer Discretionary Sector Model
 ##### Input: 
 * ../data/raw/con_disc_pe_ratio.csv
 * ../data/raw/con_disc_price.csv
@@ -123,7 +123,7 @@ For the short term, we're using a **Facebook Prophet Model**. After trying a few
 6. Choose features/ run models for each time horizon
 7. Stitch model predictions to single 18-month forecast
 
-#### 08. Financials Sector Model
+## 08. Financials Sector Model
 
 ##### Input: 
 
@@ -139,7 +139,7 @@ For the short term, we're using a **Facebook Prophet Model**. After trying a few
 6. Choose features/ run models for each time horizon
 7. Stitch model predictions to single 18-month forecast
 
-#### 09. Information Technology Sector Model
+## 09. Information Technology Sector Model
 
 The IT industry includes three major industry groups:
 
@@ -169,7 +169,7 @@ In terms of the model:
 8. Run models for each time horizon
 9. Stitch model predictions to single 18-month forecast
 
-#### 10. Telecommunications Sector Model
+## 10. Telecommunications Sector Model
 
 ##### Input data (data source is Quandl unless otherwise stated): 
 * PE_daily_normalized_tele.csv (download from ciq)
@@ -188,7 +188,7 @@ In terms of the model:
 6. Find order/ seasonal order for SARIMAX model of each horizon
 7. Run models for each time horizon
 
-#### 11. Healthcare Sector Model
+## 11. Healthcare Sector Model
 
 The Healthcare Sector includes 4 sub-industries:
 
