@@ -30,6 +30,10 @@ Team member contact information can also be found on the slides.
 #### 01. Data Cleaning
 
 #### 02. Recession Prediction
+The recession prediction model aims to help capture turning points in the business cycles and send near-term recession siganls; therefore, the results of this recession model is incorporated as an **engineered feature** into the **overall market short-term model**. 
+
+##### Input data:
+
 
 #### 03. Fed Funds Rate Prediction
 
