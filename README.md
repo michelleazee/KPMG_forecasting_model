@@ -158,6 +158,7 @@ The Healthcare Sector includes 4 sub-industries:
 ##### Output:
 * Short-term: /script/Sector_Models/healthcare_univariate_sarima.ipynb
 * Long-term: /script/Sector_Models/healthcare_regression.ipynb
+* Correlation Matrix: /script/Sector_Models/correlation_matrix_healthcare.html
 ##### Process:
 1. Create target variable from Price, P/E ratio, and Treasury Rate using Quandl
 2. Load csv file of independent variables and target variable
