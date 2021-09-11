@@ -117,7 +117,8 @@ For the short term, we're using a **Facebook Prophet Model**. After trying a few
 Downloaded from CapIQ:
 * ../data/raw/con_disc_pe_ratio.csv
 * ../data/raw/con_disc_price.csv
-From Quandl API
+
+From Quandl API:
 * 10-year treasury rate
 * PCE
 * CPI
@@ -127,6 +128,7 @@ From Quandl API
 * Advance Retail Sales
 * Consumer Sentiment
 * USD_CNY Exchange Rate
+
 Downloaded from FRED:
 * ../data/raw/VIXCLS.csv
 
