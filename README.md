@@ -68,6 +68,8 @@ The recession prediction model helps capture turning points in the business cycl
 
 ## 03. Fed Funds Rate Prediction
 
+Folder links to separate repo. Refer to README in fed_funds_rate folder for more information.
+
 ## 04. Short Term Overall Model
 
 For the short term, we're using a **Facebook Prophet Model**. After trying a few methods to improve the model, the final model is an **additive model with both endogenous trend decomposition and exogenous regressors**. 
@@ -112,11 +114,22 @@ For the short term, we're using a **Facebook Prophet Model**. After trying a few
 
 ## 07. Consumer Discretionary Sector Model
 ##### Input: 
+Downloaded from CapIQ:
 * ../data/raw/con_disc_pe_ratio.csv
 * ../data/raw/con_disc_price.csv
-* employment, unemployment...... data from Quandl
-##### Output:
-* ../data/model_outputs/consumer_discretionary_forecast.csv
+From Quandl API
+* 10-year treasury rate
+* PCE
+* CPI
+* Unemployment Rate
+* All Employees
+* Advance Real Retail and Food Services Sales
+* Advance Retail Sales
+* Consumer Sentiment
+* USD_CNY Exchange Rate
+Downloaded from FRED:
+* ../data/raw/VIXCLS.csv
+
 ##### Process:
 1. Create target variable from price, P/E ratio, and Treasury Rate
 2. Load data from csv and Quandl
