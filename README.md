@@ -21,8 +21,6 @@ Team member contact information can also be found on the slides.
 
 | | -- [processed](/data/processed)
 
-| | -- [model_outputs](/data/model_outputs)
-
 | -- fed_funds_rate <- leads to separate repo
 
 ## Code Description
