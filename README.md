@@ -194,11 +194,10 @@ In terms of the model:
 * three_month_prediction.csv (prediction from short-term model)
 * six_month_prediction.csv (prediction from short-term model)
 * twelve_month_prediction.csv (prediction from short-term model)
-exogenous variable data from quandl
-* Consumer Price Index for All Urban Consumers
-* Producer Price Index by Commodity: Machinery and Equipment
-* U.S. Imports of Services: Telecommunications, Computer, and Information Services
-* U.S. Exports of Services: Telecommunications, Computer, and Information Services
+* Consumer Price Index for All Urban Consumers (exogenous variable data from quandl)
+* Producer Price Index by Commodity: Machinery and Equipment (exogenous variable data from quandl)
+* U.S. Imports of Services: Telecommunications, Computer, and Information Services (exogenous variable data from quandl)
+* U.S. Exports of Services: Telecommunications, Computer, and Information Services (exogenous variable data from quandl)
 
 ##### Process:
 1. Create target variable from Price, P/E ratio, and Treasury Rate using Quandl
