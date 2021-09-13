@@ -191,9 +191,14 @@ In terms of the model:
 * PE_daily_normalized_tele.csv (download from ciq)
 * daily_price_tele.csv (download from ciq)
 * one_month_prediction.csv (prediction from short-term model)
+* three_month_prediction.csv (prediction from short-term model)
+* six_month_prediction.csv (prediction from short-term model)
 * twelve_month_prediction.csv (prediction from short-term model)
-* eighteen_month_prediction.csv (prediction from short-term model)
-* exogenous variable data from quandl 
+exogenous variable data from quandl
+* Consumer Price Index for All Urban Consumers
+* Producer Price Index by Commodity: Machinery and Equipment
+* U.S. Imports of Services: Telecommunications, Computer, and Information Services
+* U.S. Exports of Services: Telecommunications, Computer, and Information Services
 
 ##### Process:
 1. Create target variable from Price, P/E ratio, and Treasury Rate using Quandl
