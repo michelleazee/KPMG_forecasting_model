@@ -28,7 +28,7 @@ Team member contact information can also be found on the slides.
 ## 01. Data Cleaning
 
 ## 02. Recession Prediction
-The recession prediction model helps capture turning points in the business cycles and send near-term recession siganls; therefore, the results of the recession model is incorporated as an engineered feature into the overall market short-term model to improve overall model accuracy. Specifically, this recession model takes the difference between 10-year and 3-month Treasury rates (also defined as the “yield spread”), as well as other economic indicators to calculate recession probability in 12-month ahead horizon.
+Under the Recession Probability folder, the recession prediction model helps capture turning points in the business cycles and send near-term recession siganls; therefore, the results of the recession model is incorporated as an engineered feature into the overall market short-term model to improve overall model accuracy. Specifically, this recession model takes the difference between 10-year and 3-month Treasury rates (also defined as the “yield spread”), as well as other economic indicators to calculate recession probability in 12-month ahead horizon.
 
 #### Input data: The independent variables including adjusted yield spread and several economic indicators are used to predict 12-month ahead NBER recession dates. 
 
@@ -44,6 +44,8 @@ The recession prediction model helps capture turning points in the business cycl
 * NBERt,t+12, equals one if there is an NBER recession starting at any time in the 12 months that follow the observed independent variables, and zero otherwise. 
 
 #### Output data:
+in_sample_recession_probability
+out_sample_recession_probability
 
 #### Process:
 
@@ -61,6 +63,7 @@ The recession prediction model helps capture turning points in the business cycl
    * Choice the best performing model (SVM) based on model performance metrics
 6. Predict recession probability using *model.predict_proba*
 7. Visualize model performance
+8. Feed the in sample and out-of-sample recession prediction results into the short-term prediction model as an engineered feature
    
 
 
@@ -142,8 +145,13 @@ Downloaded from FRED:
 ## 08. Financials Sector Model
 
 ##### Input: 
+From Quandl API:
+* 10-year treasury rate
+* CPI
+* Unemployment Rate
+* PMI
 
-
+Business Confidence Index from [oecd](https://stats.oecd.org/sdmx-json/data/DP_LIVE/USA.BCI.../OECD?contentType=csv&detail=code&separator=comma&csv-lang=en)
 
 
 ##### Process:
