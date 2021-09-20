@@ -44,8 +44,8 @@ Under the Recession Probability folder, the recession prediction model helps cap
 * NBERt,t+12, equals one if there is an NBER recession starting at any time in the 12 months that follow the observed independent variables, and zero otherwise. 
 
 #### Output data:
-in_sample_recession_probability
-out_sample_recession_probability
+* in_sample_recession_probability
+* out_sample_recession_probability
 
 #### Process:
 
