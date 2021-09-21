@@ -11,23 +11,9 @@ Additional information about the project can be found on the project slides [her
 Team member contact information can also be found on the slides.
 
 
-## Folder organization
-
-| -- [script](/script)
-
-| -- [data](/data)              
-
-| | -- [raw](/data/raw)
-
-| | -- [processed](/data/processed)
-
-| -- fed_funds_rate <- leads to separate repo
-
 ## Code Description
 
-## 01. Data Cleaning
-
-## 02. Recession Prediction
+## 01. Recession Prediction
 Under the Recession Probability folder, the recession prediction model helps capture turning points in the business cycles and send near-term recession siganls; therefore, the results of the recession model is incorporated as an engineered feature into the overall market short-term model to improve overall model accuracy. Specifically, this recession model takes the difference between 10-year and 3-month Treasury rates (also defined as the “yield spread”), as well as other economic indicators to calculate recession probability in 12-month ahead horizon.
 
 #### Input data: The independent variables including adjusted yield spread and several economic indicators are used to predict 12-month ahead NBER recession dates. 
@@ -67,11 +53,11 @@ Under the Recession Probability folder, the recession prediction model helps cap
    
 
 
-## 03. Fed Funds Rate Prediction
+## 02. Fed Funds Rate Prediction
 
 Folder links to separate repo. Refer to README in fed_funds_rate folder for more information.
 
-## 04. Short Term Overall Model
+## 03. Short Term Overall Model
 
 For the short term, we're using a **Facebook Prophet Model**. After trying a few methods to improve the model, the final model is an **additive model with both endogenous trend decomposition and exogenous regressors**. 
 
@@ -95,7 +81,7 @@ For the short term, we're using a **Facebook Prophet Model**. After trying a few
 6. Apply the function and the output would be the prediction results wanted
 7. Plot the predictions and residules
 
-## 05. Long Term Overall Model
+## 04. Long Term Overall Model
 #### Input: 
 * ../data/final/mth_data_michelle.csv
 * Note: target variable (../data/raw/2021_6_24_new_target_variable_sp500.csv, ../data/raw/mth_treasury_10yr.csv) and economic indicator variables (../data/raw/) are incoporatd into the input data file.
@@ -104,7 +90,7 @@ For the short term, we're using a **Facebook Prophet Model**. After trying a few
 ##### Output:
 * ../script/Long-term model/Results_for_sector/
 
-## 06. Overall Model Results Ensemble
+## 05. Overall Model Results Ensemble
 #### Input: 
 * ../script/Final Short-term Model/Results/
 * ../script/Long-term model/Results_for_sector/
@@ -113,7 +99,7 @@ For the short term, we're using a **Facebook Prophet Model**. After trying a few
 ##### Output:
 * ../script/Overall model Ensemble/Results/
 
-## 07. Consumer Discretionary Sector Model
+## 06. Consumer Discretionary Sector Model
 ##### Input: 
 Downloaded from CapIQ:
 * ../data/raw/con_disc_pe_ratio.csv
@@ -142,7 +128,7 @@ Downloaded from FRED:
 6. Choose features/ run models for each time horizon
 7. Stitch model predictions to single 18-month forecast
 
-## 08. Financials Sector Model
+## 07. Financials Sector Model
 
 ##### Input: 
 From Quandl API:
@@ -163,7 +149,7 @@ Business Confidence Index from [oecd](https://stats.oecd.org/sdmx-json/data/DP_L
 6. Choose features/ run models for each time horizon
 7. Stitch model predictions to single 18-month forecast
 
-## 09. Information Technology Sector Model
+## 08. Information Technology Sector Model
 
 The IT industry includes three major industry groups:
 
@@ -193,7 +179,7 @@ In terms of the model:
 8. Run models for each time horizon
 9. Stitch model predictions to single 18-month forecast
 
-## 10. Telecommunications Sector Model
+## 9. Telecommunications Sector Model
 
 ##### Input data (data source is Quandl unless otherwise stated): 
 * PE_daily_normalized_tele.csv (download from ciq)
@@ -216,7 +202,7 @@ In terms of the model:
 6. Find order/ seasonal order for SARIMAX model of each horizon
 7. Run models for each time horizon
 
-## 11. Healthcare Sector Model
+## 10. Healthcare Sector Model
 
 The Healthcare Sector includes 4 sub-industries:
 
